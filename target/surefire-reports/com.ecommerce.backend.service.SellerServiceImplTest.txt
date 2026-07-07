@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.ecommerce.backend.service.SellerServiceImplTest
--------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.202 s -- in com.ecommerce.backend.service.SellerServiceImplTest
