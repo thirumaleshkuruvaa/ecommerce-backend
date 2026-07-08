@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmailService {
@@ -27,23 +29,23 @@ public class EmailService {
 
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(
-                    mimeMessage,
-                    "utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
-            mimeMessageHelper.setSubject(subject);
+            helper.setTo(userEmail);
+            helper.setSubject(subject);
 
-            mimeMessageHelper.setText(
-                    text + otp);
-
-            mimeMessageHelper.setTo(userEmail);
+            // Send complete message
+            helper.setText(text, false);
 
             javaMailSender.send(mimeMessage);
 
+            log.info("Email sent successfully to {}", userEmail);
+
         } catch (MailException e) {
 
-            throw new MailSendException(
-                    "Failed to send mail");
+            log.error("Failed to send email to {}", userEmail, e);
+
+            throw new MailSendException("Failed to send mail", e);
         }
     }
 }
