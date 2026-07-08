@@ -31,6 +31,8 @@ public class EmailService {
 
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
+            // Sender (verified in Brevo)
+            helper.setFrom("Glomo <thirumaleshkuruva009@gmail.com>");
             helper.setTo(userEmail);
             helper.setSubject(subject);
 
