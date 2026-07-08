@@ -1,5 +1,7 @@
 package com.ecommerce.backend.service;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.lang.Nullable;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSendException;
@@ -23,7 +25,7 @@ public class EmailService {
             @Nullable String userEmail,
             String otp,
             String subject,
-            String text) throws MessagingException {
+            String text) throws MessagingException, UnsupportedEncodingException {
 
         try {
 
@@ -31,12 +33,9 @@ public class EmailService {
 
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
-            // Sender (verified in Brevo)
-            helper.setFrom("Glomo <thirumaleshkuruva009@gmail.com>");
+            helper.setFrom("thirumaleshkuruva009@gmail.com ", "Glomo");
             helper.setTo(userEmail);
             helper.setSubject(subject);
-
-            // Send complete message
             helper.setText(text, false);
 
             javaMailSender.send(mimeMessage);
