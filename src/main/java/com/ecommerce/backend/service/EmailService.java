@@ -25,7 +25,7 @@ public class EmailService {
             @Nullable String userEmail,
             String otp,
             String subject,
-            String text) throws MessagingException, UnsupportedEncodingException {
+            String text) throws MessagingException {
 
         try {
 
@@ -33,7 +33,7 @@ public class EmailService {
 
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
-            helper.setFrom("thirumaleshkuruva009@gmail.com ", "Glomo");
+            helper.setFrom("thirumaleshkuruva009@gmail.com ");
             helper.setTo(userEmail);
             helper.setSubject(subject);
             helper.setText(text, false);

@@ -1,5 +1,7 @@
 package com.ecommerce.backend.service;
 
+import java.io.UnsupportedEncodingException;
+
 import com.ecommerce.backend.domain.USER_ROLE;
 import com.ecommerce.backend.exceptions.OtpException;
 import com.ecommerce.backend.exceptions.SellerException;
@@ -18,13 +20,14 @@ public interface AuthService {
 
         // SIGNUP OTP
         void sendSignupOtp(String email)
-                        throws MessagingException, UserException, UserAlreadyExistsException;
+                        throws MessagingException, UserException, UserAlreadyExistsException,
+                        UnsupportedEncodingException;
 
         // LOGIN OTP
         void sendLoginOtp(
                         String email,
                         USER_ROLE role)
-                        throws MessagingException, UserException, SellerException;
+                        throws MessagingException, UserException, SellerException, UnsupportedEncodingException;
 
         // LOGIN
         AuthResponse signing(LoginRequest request) throws OtpException;
